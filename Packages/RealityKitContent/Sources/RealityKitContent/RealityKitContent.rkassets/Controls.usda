@@ -1,0 +1,77 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "exit_v7" (
+        active = true
+        prepend references = @exit-v7.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.0070489645, 0, 0.011360168)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "Curve_001"
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (4.858518, 1, 4.858518)
+                double3 xformOp:translate = (-0.5450969338417053, 0.06033803150057793, 0.6000000238418579)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            over "Circle"
+            {
+                def RealityKitComponent "InputTarget"
+                {
+                    uniform token info:id = "RealityKit.InputTarget"
+                }
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Default"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (1.9960535, 0, 2)
+                        float radius = 1
+                        token shapeType = "Sphere"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+
+        over "Materials"
+        {
+            over "white"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "surfaceShader"
+                {
+                    color3f inputs:emissiveColor = (1, 1, 1) (
+                        colorSpace = "lin_srgb"
+                    )
+                }
+            }
+        }
+    }
+}
+
